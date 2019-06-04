@@ -17,7 +17,7 @@ public class RobotMap {
 
   public static class Ports{
     public static final SerialPort.Port AHRS = SerialPort.Port.kUSB;
-    public static int
+    public static int 
     
       
       leftTalon = 4,
@@ -28,7 +28,7 @@ public class RobotMap {
       leftVictor1 = 5,
       leftVictor2 = 6,
       rightVictor1 = 2,
-      rightVictor2 = 3,
+      rightVictor2 = 3;
   }
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
