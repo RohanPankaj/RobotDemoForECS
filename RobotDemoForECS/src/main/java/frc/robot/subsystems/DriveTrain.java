@@ -16,7 +16,6 @@ public class DriveTrain extends Subsystem {
   private TalonSRX leftTalon, rightTalon;
   private VictorSPX rightVictor1, rightVictor2, leftVictor1, leftVictor2;
 
-
   public DriveTrain(){
     this(RoboMisc.standTalonSRXSetup(RobotMap.Ports.leftTalon, 
         RobotMap.Ports.leftVictor1,
@@ -25,7 +24,7 @@ public class DriveTrain extends Subsystem {
       RoboMisc.standTalonSRXSetup(RobotMap.Ports.rightTalon, 
         RobotMap.Ports.rightVictor1,
         RobotMap.Ports.rightVictor2, 
-        true),
+        false)
   }
 
   public setVolts(double left, double right){
@@ -38,12 +37,10 @@ public class DriveTrain extends Subsystem {
     return leftTalon.getSelectedSensorPosition(0);
   }
 
-
   public double rightEncoderTicks() {
     rightTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
     return rightTalon.getSelectedSensorPosition(0);
   }
-
 
   public double leftEncoderVelocity() {
     leftTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -69,6 +66,7 @@ public class DriveTrain extends Subsystem {
     rightTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0); /* PIDLoop=0,timeoutMs=0 */
     rightTalon.setSelectedSensorPosition(0, 0, 10);
   }
+
   public void setPIDValues() {
     // Make these reference a passed in table so we can write tests.
     double p = table.getEntry("P").getDouble(1);
@@ -85,13 +83,10 @@ public class DriveTrain extends Subsystem {
     rightTalon.config_kI(0, i, 0);
     leftTalon.config_kD(0, d, 0);
     rightTalon.config_kD(0, d, 0);
-  } 
+  }
+
   @Override
   public void initDefaultCommand() {
     etDefaultCommand(new ArcadeDrive());
   }
-
-  
-
-  
 }
